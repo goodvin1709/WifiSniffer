@@ -5,20 +5,16 @@ package model;
  */
 public class ConnectionParams {
 
-    private int requsetId;
+    private int requestId;
     private int postId;
 
-    public ConnectionParams(int requsetId) {
+    public ConnectionParams(int requestId) {
         this.postId = 0;
-        this.requsetId = requsetId;
+        this.requestId = requestId;
     }
 
-    public int getRequsetId() {
-        return requsetId;
-    }
-
-    public void setRequsetId(int requsetId) {
-        this.requsetId = requsetId;
+    public int getRequestId() {
+        return requestId;
     }
 
     public int getPostId() {
