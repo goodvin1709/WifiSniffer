@@ -37,7 +37,8 @@ public class WifiSniffer implements Callback {
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
-       connectionParams = HtmlParseUtils.getConnectionParams(response.body().string());
+        connectionParams = HtmlParseUtils.getConnectionParams(response.body().string());
+        log.info("Success parsing requset_id = "+connectionParams.getRequsetId());
     }
 
     private static class SingletonHolder {

@@ -5,37 +5,27 @@ package model;
  */
 public class ConnectionParams {
 
-    private String requsetId;
-    private String activePage;
-    private String postId;
+    private int requsetId;
+    private int postId;
 
-    public ConnectionParams(String requsetId, String activePage, String postId) {
+    public ConnectionParams(int requsetId) {
+        this.postId = 0;
         this.requsetId = requsetId;
-        this.activePage = activePage;
-        this.postId = postId;
     }
 
-    public String getRequsetId() {
+    public int getRequsetId() {
         return requsetId;
     }
 
-    public void setRequsetId(String requsetId) {
+    public void setRequsetId(int requsetId) {
         this.requsetId = requsetId;
     }
 
-    public String getActivePage() {
-        return activePage;
-    }
-
-    public void setActivePage(String activePage) {
-        this.activePage = activePage;
-    }
-
-    public String getPostId() {
+    public int getPostId() {
         return postId;
     }
 
-    public void setPostId(String postId) {
+    public void setPostId(int postId) {
         this.postId = postId;
     }
 }
