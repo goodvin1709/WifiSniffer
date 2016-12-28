@@ -24,7 +24,7 @@ public class LoginParams {
         this.activePageStr = "9146";
         this.activePageStr = "bt_login";
         this.buttonValue = "";
-        this.mimicButtonField = "submit_button_login_submit%3A+..";
+        this.mimicButtonField = "submit_button_login_submit: ..";
     }
 
     public ConnectionParams getConnectionParams() {
