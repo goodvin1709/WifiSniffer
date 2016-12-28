@@ -18,11 +18,11 @@ public class HtmlParseUtils {
         return new ConnectionParams(Integer.valueOf(requestIdElement.val()));
     }
 
-    public static LoginParams getLoginParams(ConnectionParams params, String htmlBody, String password) {
+    public static LoginParams getLoginParams(String htmlBody, String password) {
         Document html = Jsoup.parse(htmlBody);
         String passwordFieldName = html.getElementsByTag(PARAMS_TAG_NAME).get(6).attributes().get("name");
         String authKey = html.getElementsByTag(PARAMS_TAG_NAME).get(8).val();
         String md5Path = md5Utils.encryptPassword(authKey, password);
-        return new LoginParams(params, passwordFieldName, md5Path, authKey);
+        return new LoginParams(passwordFieldName, md5Path, authKey);
     }
 }

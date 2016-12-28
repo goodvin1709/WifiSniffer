@@ -9,7 +9,7 @@ public class ConnectionParams {
     private int postId;
 
     public ConnectionParams(int requestId) {
-        this.postId = 0;
+        this.postId = -1;
         this.requestId = requestId;
     }
 
@@ -18,10 +18,7 @@ public class ConnectionParams {
     }
 
     public int getPostId() {
+        postId++;
         return postId;
-    }
-
-    public void setPostId(int postId) {
-        this.postId = postId;
     }
 }
