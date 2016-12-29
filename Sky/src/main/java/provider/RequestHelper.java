@@ -14,8 +14,6 @@ import java.util.List;
 public class RequestHelper {
 
     private static final String CONFIGURATION_CHANGE_URL = "http://192.168.0.1/sky_wireless_update.cmd";
-
-    private static final Logger log = Logger.getLogger(RequestHelper.class);
     private CookieHandler cookieHandler;
     private OkHttpClient client;
 

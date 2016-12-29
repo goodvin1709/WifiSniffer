@@ -8,11 +8,11 @@ public class WirelessUpdate {
     private static final String SKY_WIRELESS_TODO = "save";
     private static final String SKY_FILE = "sky_wireless_channel.html";
 
-    String wChanel;
-    String hWChanel;
-    String todo;
-    String thisFile;
-    String nextFile;
+    private String wChanel;
+    private String hWChanel;
+    private String todo;
+    private String thisFile;
+    private String nextFile;
 
     public WirelessUpdate(String wChanel) {
         this.wChanel = wChanel;

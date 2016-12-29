@@ -5,8 +5,6 @@ package model;
  */
 public class Authorization {
 
-    private static final String USER_LOGIN_FIELD_NAME = "User ID";
-    private static final String USER_PASSWORD_FIELD_NAME = "Password";
     private String user;
     private String password;
 
@@ -23,11 +21,4 @@ public class Authorization {
         return password;
     }
 
-    public static String getUserLoginFieldName() {
-        return USER_LOGIN_FIELD_NAME;
-    }
-
-    public static String getUserPasswordFieldName() {
-        return USER_PASSWORD_FIELD_NAME;
-    }
 }
