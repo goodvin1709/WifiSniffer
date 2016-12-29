@@ -35,13 +35,18 @@ public class WifiSniffer implements Callback {
     @Override
     public void onFailure(Call call, IOException e) {
         log.info("Connection failed. Try again latter.");
-        System.exit(0);
+       exit();
 
     }
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
+        log.info("Chanel changed to ".concat(NEW_CHANEL));
+        exit();
+    }
 
+    private void exit() {
+        System.exit(0);
     }
 
     private static class SingletonHolder {
