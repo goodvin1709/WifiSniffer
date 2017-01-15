@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class RequestHelper {
 
+    private static final String BASE_URL = "http://192.168.0.1/sky_wireless_settings.html";
     private static final String CONFIGURATION_CHANGE_URL = "http://192.168.0.1/sky_wireless_update.cmd";
     private CookieHandler cookieHandler;
     private OkHttpClient client;
@@ -25,6 +26,14 @@ public class RequestHelper {
     protected RequestHelper() {
         cookieHandler = new CookieHandler();
         client = new OkHttpClient.Builder().cookieJar(cookieHandler).build();
+    }
+
+    public void connect(Callback callback) {
+        String credential = Credentials.basic("admin", "skys");
+        Request connectRequest = new Request.Builder()
+                .header("Authorization", credential)
+                .url(BASE_URL).build();
+        client.newCall(connectRequest).enqueue(callback);
     }
 
     public void changeChanel(WirelessUpdate updateChanel, Authorization authorization, Callback callback) {

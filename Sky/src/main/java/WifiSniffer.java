@@ -13,8 +13,11 @@ import java.io.IOException;
  */
 public class WifiSniffer implements Callback {
 
+    public static final String BASE_URL = "http://192.168.0.1/sky_wireless_channel.html";
+    private static final String CONFIGURATION_CHANGE_URL = "http://192.168.0.1/sky_wireless_update.cmd";
+
     private static final Logger log = Logger.getLogger(WifiSniffer.class);
-    private static final String NEW_CHANEL = "3";
+    private static final String NEW_CHANEL = "4";
     private static final String ADMIN_LOGIN = "admin";
     private static final String ADMIN_PASSWORD = "sky";
     private WirelessUpdate chanel;
@@ -29,20 +32,53 @@ public class WifiSniffer implements Callback {
         chanel = new WirelessUpdate(NEW_CHANEL);
         authorization = new Authorization(ADMIN_LOGIN, ADMIN_PASSWORD);
         requestHelper = RequestHelper.getInstance();
-        requestHelper.changeChanel(chanel, authorization, this);
+        requestHelper.connect(this);
     }
 
     @Override
     public void onFailure(Call call, IOException e) {
         log.info("Connection failed. Try again latter.");
-       exit();
-
+        exit();
     }
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
-        log.info("Chanel changed to ".concat(NEW_CHANEL));
-        exit();
+        if (isLoginFail(response)) {
+            requestHelper.connect(this);
+        }
+        if (isConnectResponse(response)) {
+            sendChannelChangeRequest();
+        } else if (isChanelChangedResponse(response)) {
+            log.info("Chanel changed to ".concat(NEW_CHANEL));
+            exit();
+        }
+    }
+
+    private boolean isLoginFail(Response response) {
+        return response.code() == 401;
+    }
+
+    private boolean isConnectResponse(Response response) {
+        if (response.request().method().equals("GET") && response.code() == 200
+                && response.request().url().toString().equals(BASE_URL)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void sendChannelChangeRequest() {
+        authorization = new Authorization(ADMIN_LOGIN, ADMIN_PASSWORD);
+        requestHelper.changeChanel(chanel, authorization, this);
+    }
+
+    private boolean isChanelChangedResponse(Response response) {
+        if (response.request().method().equals("POST") && response.code() == 200
+                && response.request().url().toString().equals(CONFIGURATION_CHANGE_URL)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void exit() {

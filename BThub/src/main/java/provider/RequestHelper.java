@@ -100,7 +100,6 @@ public class RequestHelper {
                 .add("strength", config.getStrength()).build();
         Request configChangeRequest = new Request.Builder().url(urlBuilder.toString()).post(requestChanelChange).build();
         client.newCall(configChangeRequest).enqueue(callback);
-
     }
 
     private static class SingletonHolder {
